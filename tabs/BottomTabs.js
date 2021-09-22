@@ -15,7 +15,7 @@ const BottomTabs = () => {
         component={HomeScreen}
         options={{
           tabBarLabel: "",
-          tabBarColor: "#101394",
+          tabBarColor: "#037ffc",
           tabBarIcon: () => {
             return <AntDesign name="home" size={24} color="white" />;
           },
@@ -26,7 +26,7 @@ const BottomTabs = () => {
         component={SearchScreen}
         options={{
           tabBarLabel: "",
-          tabBarColor: "#101394",
+          tabBarColor: "#037ffc",
           tabBarIcon: () => {
             return <AntDesign name="search1" size={24} color="white" />;
           },
@@ -37,7 +37,7 @@ const BottomTabs = () => {
         component={AddScreen}
         options={{
           tabBarLabel: "",
-          tabBarColor: "#101394",
+          tabBarColor: "#037ffc",
           tabBarIcon: () => {
             return <AntDesign name="pluscircle" size={24} color="white" />;
           },
@@ -48,7 +48,7 @@ const BottomTabs = () => {
         component={AccountScreen}
         options={{
           tabBarLabel: "",
-          tabBarColor: "#101394",
+          tabBarColor: "#037ffc",
           tabBarIcon: () => {
             return (
               <MaterialCommunityIcons
