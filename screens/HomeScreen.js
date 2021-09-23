@@ -9,16 +9,19 @@ import {
   Dimensions,
   Pressable,
 } from "react-native";
-import { Checkbox } from "react-native-paper";
-import { AntDesign, Ionicons, Entypo } from "@expo/vector-icons";
+
 import globalStyles from "../styles/globalStyles";
-import { EventItem, UpcomingEvents, EventsHeader } from "../components";
+import {
+  EventItem,
+  UpcomingEvents,
+  EventsHeader,
+  EventResponseModal,
+} from "../components";
 import events from "../assets/data/events";
 
 const HomeScreen = () => {
   const [absolutePosition, setAbsolutePosition] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [checked, setChecked] = React.useState(false);
 
   const handleScroll = (e) => {
     const scrollPosition = e.nativeEvent.contentOffset.y;
@@ -31,10 +34,12 @@ const HomeScreen = () => {
 
   const hideModalScroll = (e) => {
     const modalScrollPosition = e.nativeEvent.contentOffset.y;
-    console.log(modalScrollPosition);
   };
   return (
     <View style={globalStyles.AndroidSafeArea}>
+      <View style={{ padding: 8 }}>
+        <Text style={{ fontWeight: "bold", fontSize: 28 }}>EventList</Text>
+      </View>
       <ScrollView showsVerticalScrollIndicator={false} onScroll={handleScroll}>
         <>
           <UpcomingEvents events={events} setModalVisible={setModalVisible} />
@@ -66,71 +71,10 @@ const HomeScreen = () => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         onScroll={hideModalScroll}>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(false);
-          }}>
-          <View style={{}} elevation={14} style={styles.modalContainer}>
-            <Pressable
-              style={styles.modalHeader}
-              onPress={() => setModalVisible(false)}>
-              <Text style={styles.modalHeaderTitle}>Your Response</Text>
-            </Pressable>
-            <View style={styles.modalBody}>
-              <View style={styles.modalItem}>
-                <View style={styles.modalItemLeft}>
-                  <View style={styles.iconContainer}>
-                    <AntDesign name="star" size={24} color="white" />
-                  </View>
-                  <Text style={styles.itemTitle}>Interested</Text>
-                </View>
-                <View style={styles.modalItemRight}>
-                  <Checkbox
-                    status={checked ? "checked" : "unchecked"}
-                    onPress={() => {
-                      setChecked(!checked);
-                    }}
-                  />
-                </View>
-              </View>
-              <View style={styles.modalItem}>
-                <View style={styles.modalItemLeft}>
-                  <View style={styles.iconContainer}>
-                    <Ionicons name="checkmark-circle" size={24} color="white" />
-                  </View>
-                  <Text style={styles.itemTitle}>Attending</Text>
-                </View>
-                <View style={styles.modalItemRight}>
-                  <Checkbox
-                    status={checked ? "checked" : "unchecked"}
-                    onPress={() => {
-                      setChecked(!checked);
-                    }}
-                  />
-                </View>
-              </View>
-              <View style={styles.modalItem}>
-                <View style={styles.modalItemLeft}>
-                  <View style={styles.iconContainer}>
-                    <Entypo name="circle-with-cross" size={24} color="white" />
-                  </View>
-                  <Text style={styles.itemTitle}>Not Interested</Text>
-                </View>
-                <View style={styles.modalItemRight}>
-                  <Checkbox
-                    status={checked ? "checked" : "unchecked"}
-                    onPress={() => {
-                      setChecked(!checked);
-                    }}
-                  />
-                </View>
-              </View>
-            </View>
-          </View>
-        </Modal>
+        <EventResponseModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
       </ScrollView>
     </View>
   );

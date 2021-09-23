@@ -1,23 +1,25 @@
 import React from "react";
-
 import { AntDesign, EvilIcons } from "@expo/vector-icons";
-
 import {
   View,
   Text,
   Image,
   Dimensions,
   StyleSheet,
-  Pressable,
+  TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
 const EventItem = ({ item, upcomingEvent, setModalVisible }) => {
+  const navigation = useNavigation();
+
   return (
-    <Pressable
+    <TouchableOpacity
       style={[styles.eventContainer, upcomingEvent && styles.upcomingTop]}
-      elevation={3}>
+      elevation={16}
+      onPress={() => navigation.navigate("EventDetails", { eventId: item.id })}>
       <Image
         source={item.photo}
         style={{
@@ -39,16 +41,16 @@ const EventItem = ({ item, upcomingEvent, setModalVisible }) => {
           <Text style={styles.eventPrivancy}>{item.privancy}</Text>
         </View>
         <View styles={styles.eventButtonContainer}>
-          <Pressable
+          <TouchableOpacity
             style={styles.eventButton}
             elevation={4}
             onPress={() => setModalVisible(true)}>
             <AntDesign name="staro" size={24} color="white" />
             <Text style={styles.buttonText}>Interested</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

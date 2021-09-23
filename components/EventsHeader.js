@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, FlatList, Dimensions, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 const { width } = Dimensions.get("window");
 const categories = ["Top", "This Week", "Local", "Online"];
 
@@ -14,17 +20,29 @@ const EventsHeader = () => {
         renderItem={({ item }) => (
           <View
             style={{
-              width: 75,
+              width: 100,
               paddingVertical: 8,
               marginRight: 20,
               justifyContent: "center",
               alignItems: "center",
             }}>
-            <Pressable>
-              <Text style={{ fontWeight: "bold", fontSize: 16, color: "gray" }}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#037ffc",
+                padding: 8,
+                width: 100,
+                borderRadius: 4,
+              }}>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 16,
+                  color: "white",
+                  textAlign: "center",
+                }}>
                 {item}
               </Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
         )}
       />

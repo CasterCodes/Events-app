@@ -2,6 +2,7 @@ import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { HomeScreen, AddScreen, SearchScreen, AccountScreen } from "../screens";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import EventStack from "../stacks/EventStack";
 
 const Tabs = createMaterialBottomTabNavigator();
 
@@ -12,7 +13,7 @@ const BottomTabs = () => {
       screenOptions={{ headerShown: false }}>
       <Tabs.Screen
         name="Home"
-        component={HomeScreen}
+        component={EventStack}
         options={{
           tabBarLabel: "",
           tabBarColor: "#037ffc",
