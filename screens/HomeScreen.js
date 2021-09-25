@@ -4,10 +4,8 @@ import {
   FlatList,
   StyleSheet,
   ScrollView,
-  Modal,
   Text,
   Dimensions,
-  Pressable,
 } from "react-native";
 
 import globalStyles from "../styles/globalStyles";
@@ -42,30 +40,45 @@ const HomeScreen = () => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false} onScroll={handleScroll}>
         <>
-          <UpcomingEvents events={events} setModalVisible={setModalVisible} />
+          <View style={styles.upcomingEventContainer}>
+            <View
+              style={[
+                styles.upcomingEventHeader,
+                { marginVertical: 0, paddingVertical: 4 },
+              ]}>
+              <Text
+                elevation={12}
+                style={[
+                  styles.upcomingTitle,
+                  {
+                    backgroundColor: "#037ffc",
+                    color: "white",
+                    padding: 12,
+                    borderRadius: 8,
+                    fontWeight: "700",
+                  },
+                ]}>
+                Your Upcoming Events
+              </Text>
+            </View>
+            <UpcomingEvents events={events} setModalVisible={setModalVisible} />
+          </View>
           <View
             style={[
               { padding: 8 },
               absolutePosition && styles.headerAbsolute,
             ]}></View>
-          <FlatList
-            data={events}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            ListHeaderComponent={() => {
-              if (!absolutePosition) {
-                return <EventsHeader />;
-              } else {
-                return <View style={{ padding: 9 }} />;
-              }
-            }}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => {
-              return (
-                <EventItem item={item} setModalVisible={setModalVisible} />
-              );
-            }}
-          />
+
+          <View>
+            {!absolutePosition && <EventsHeader />}
+            {events.map((event, index) => (
+              <EventItem
+                key={index}
+                item={event}
+                setModalVisible={setModalVisible}
+              />
+            ))}
+          </View>
         </>
       </ScrollView>
       <ScrollView
