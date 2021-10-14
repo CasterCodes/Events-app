@@ -14,7 +14,7 @@ import { Ionicons, AntDesign, Entypo, Feather } from "@expo/vector-icons";
 import globalStyles from "../styles/globalStyles";
 
 const AccountScreen = () => {
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [textFocused, setTextFocused] = useState(false);
 
   const handleFocus = () => setTextFocused(true);
